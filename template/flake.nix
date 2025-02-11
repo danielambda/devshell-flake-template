@@ -18,6 +18,13 @@
           packages = with pkgs; [
             nixd
           ];
+
+          # shellHook = ''
+          #   set -a
+          #   source ./.env
+          #   set +a
+          # '';
+
         };
       }
     );
