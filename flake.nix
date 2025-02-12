@@ -10,12 +10,11 @@
   };
 
   outputs = { nixpkgs, flake-utils, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
+    { defaultTemplate.path = ./template; }
+    // flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
       in {
-        defaultTemplate.path = ./template;
-
         devShells.default = pkgs.mkShell {
           packages = [pkgs.nixd];
         };
